@@ -370,6 +370,16 @@ fun CoachmarkScrim(
         return
     }
 
+    // Don't render if target bounds haven't been registered yet (still Rect.Zero)
+    val currentTargetBounds = when (val s = state) {
+        is CoachmarkState.Showing -> s.target.bounds
+        is CoachmarkState.Sequence -> s.currentTarget.bounds
+        CoachmarkState.Hidden -> null
+    }
+    if (currentTargetBounds != null && currentTargetBounds.isEmpty) {
+        return
+    }
+
     // Fire analytics onShow when a new target becomes visible
     LaunchedEffect(currentTargetId) {
         if (currentTargetId != null) {
