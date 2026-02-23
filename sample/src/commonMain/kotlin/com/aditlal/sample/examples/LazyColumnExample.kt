@@ -92,6 +92,7 @@ fun LazyColumnExample(
             showSkipButton = true,
             skipButtonText = "Skip tour",
             scrimTapBehavior = ScrimTapBehavior.NONE,
+            retrySkippedTargets = true,
         ),
         colors = coachmarkColors(),
     ) {
