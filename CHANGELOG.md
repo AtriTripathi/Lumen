@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta07] - 2026-02-23
+
+### Features
+- **Retry skipped targets** — New `retrySkippedTargets` config flag that re-queues off-screen coachmark targets to the end of the sequence instead of permanently skipping them, with infinite-loop guard
+- **Auto-scroll support** — `scrollRequester` callback on `CoachmarkController` enables auto-scrolling LazyColumn/LazyRow to bring off-screen targets into view before showing coachmarks
+- **Bounds guard** — Scrim no longer flashes when target bounds haven't been laid out yet (Rect.Zero early return)
+
+### Bug Fixes
+- Fixed coachmark targets in scrollable lists being permanently skipped when scrolled off-screen
+- Fixed docs site broken demo links
+
 ## [1.0.0-beta06] - 2026-02-17
 
 ### Features

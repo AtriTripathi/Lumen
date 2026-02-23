@@ -106,7 +106,7 @@ android {
     }
 }
 
-val libraryVersion = "1.0.0-beta06"
+val libraryVersion = "1.0.0-beta07"
 val libraryGroup = "io.github.aldefy"
 val libraryArtifact = "lumen"
 
