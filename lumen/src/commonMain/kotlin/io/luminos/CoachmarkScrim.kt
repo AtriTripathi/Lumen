@@ -291,6 +291,9 @@ fun CoachmarkScrim(
     var isReadyToShow by remember { mutableStateOf(false) }
     val isScrolling = controller.isScrolling
 
+    // Track targets that have already been retried once to prevent infinite loops
+    val retriedTargets = remember { mutableSetOf<String>() }
+
     // Get current target ID for visibility check
     val currentTargetId = when (val s = state) {
         is CoachmarkState.Showing -> s.target.id
@@ -322,11 +325,15 @@ fun CoachmarkScrim(
                 // Wait for scroll + layout to settle, then check if it worked
                 delay(config.scrollTimeout)
                 if (!controller.isTargetVisible(currentTargetId)) {
-                    controller.skipCurrentIfNotVisible()
+                    val shouldRetry = config.retrySkippedTargets && currentTargetId !in retriedTargets
+                    if (shouldRetry) retriedTargets.add(currentTargetId)
+                    controller.skipCurrentIfNotVisible(retry = shouldRetry)
                 }
             } else {
                 // No scroller provided — skip this step
-                controller.skipCurrentIfNotVisible()
+                val shouldRetry = config.retrySkippedTargets && currentTargetId !in retriedTargets
+                if (shouldRetry) retriedTargets.add(currentTargetId)
+                controller.skipCurrentIfNotVisible(retry = shouldRetry)
             }
         }
     }
