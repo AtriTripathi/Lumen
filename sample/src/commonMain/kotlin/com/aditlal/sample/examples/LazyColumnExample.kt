@@ -85,6 +85,18 @@ fun LazyColumnExample(
             }
     }
 
+    // Map coachmark target IDs to LazyColumn item indices for auto-scroll
+    val targetToIndex = mapOf(
+        "favorite_button" to 0,
+        "delete_button" to 2,
+        "list_card" to 4,
+    )
+    controller.scrollRequester = { targetId ->
+        targetToIndex[targetId]?.let { index ->
+            lazyListState.animateScrollToItem(index)
+        }
+    }
+
     CoachmarkHost(
         controller = controller,
         config = CoachmarkConfig(
@@ -92,6 +104,7 @@ fun LazyColumnExample(
             showSkipButton = true,
             skipButtonText = "Skip tour",
             scrimTapBehavior = ScrimTapBehavior.NONE,
+            retrySkippedTargets = true,
         ),
         colors = coachmarkColors(),
     ) {
