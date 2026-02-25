@@ -1309,8 +1309,8 @@ private fun calculateTooltipPosition(
             (targetBounds.right + effectiveGap)
                 .coerceIn(margin, screenSize.width - tooltipSize.width - margin)
         }
-        // Align tooltip top with connector line (target center Y)
-        val y = targetCenterY
+        // Center tooltip vertically on the target center
+        val y = (targetCenterY - tooltipSize.height / 2f)
             .coerceIn(margin, screenSize.height - tooltipSize.height - margin)
         return Offset(x, y)
     }
