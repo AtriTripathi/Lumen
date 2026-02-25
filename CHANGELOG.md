@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta08] - 2026-02-25
+
+### Bug Fixes
+- Fixed horizontal connector tooltip positioning — tooltip is now vertically centered on the target instead of top-aligned, preventing text from rendering below targets near the bottom of the screen
+
 ## [1.0.0-beta07] - 2026-02-23
 
 ### Features
