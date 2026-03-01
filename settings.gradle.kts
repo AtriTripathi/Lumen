@@ -20,7 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Lumen"
+rootProject.name = "lumen-root"
 include(":lumen")
-include(":sample")
-include(":sample-web")
